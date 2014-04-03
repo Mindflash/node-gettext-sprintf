@@ -6,7 +6,7 @@ A combination of node-gettext and sprintf
 
 ### Installation:
 ```
-npm install cloudfront-private-url-creator
+npm install node-gettext-sprintf
 ```
 
 ### Usage:
