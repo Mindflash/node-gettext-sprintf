@@ -2,7 +2,7 @@
 
 Gets you text, you know, in a language you specified.
 
-[![Build Status](https://travis-ci.org/mindflash/node-gettext-sprintf.png?branch=master)](https://travis-ci.org/mindflash/node-gettext-sprintf)
+[![Build Status](https://travis-ci.org/mindflash/node-gettext-sprintf.png?branch=master)](https://travis-ci.org/Mindflash/node-gettext-sprintf)
 
 ### Installation:
 ```
