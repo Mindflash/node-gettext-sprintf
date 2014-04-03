@@ -1,6 +1,6 @@
-#mf-language
+#node-gettext-sprintf
 
-Gets you text, you know, in a language you specified.
+A combination of node-gettext and sprintf
 
 [![Build Status](https://travis-ci.org/Mindflash/node-gettext-sprintf.png?branch=master)](https://travis-ci.org/Mindflash/node-gettext-sprintf)
 
