@@ -13,10 +13,10 @@ npm install node-gettext-sprintf
 ```javascript
 "use strict";
 var fs = require('fs');
-var mfLanguage = require('mf-language');
+var getText = require('node-gettext-sprintf');
 var languageFns;
 
-mfLanguage({
+getText({
 	'test': fs.readFileSync('./test.po')
 }, function(err, res) {
 	languageFns = res('test'); // loads the 'test' language
