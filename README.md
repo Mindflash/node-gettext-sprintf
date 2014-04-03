@@ -2,7 +2,7 @@
 
 Gets you text, you know, in a language you specified.
 
-[![Build Status](https://travis-ci.org/mindflash/node-gettext-sprintf.png?branch=master)](https://travis-ci.org/Mindflash/node-gettext-sprintf)
+[![Build Status](https://travis-ci.org/Mindflash/node-gettext-sprintf.png?branch=master)](https://travis-ci.org/Mindflash/node-gettext-sprintf)
 
 ### Installation:
 ```
@@ -12,10 +12,13 @@ npm install cloudfront-private-url-creator
 ### Usage:
 ```javascript
 "use strict";
+var fs = require('fs');
 var mfLanguage = require('mf-language');
 var languageFns;
 
-mfLanguage(function(err, res) {
+mfLanguage({
+	'test': fs.readFileSync('./test.po')
+}, function(err, res) {
 	languageFns = res('test'); // loads the 'test' language
 
 	languageFns.getText("Simple string");
