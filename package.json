@@ -1,0 +1,27 @@
+{
+	"name": "node-gettext-sprintf",
+	"version": "0.0.1",
+	"description": "A combination of node-gettext and sprintf",
+	"main": "index.js",
+	"scripts": {
+		"test": "tap test/tests.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/Mindflash/node-gettext-sprintf.git"
+	},
+	"author": "Mindflash <npmjs@mindflash.com>",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Mindflash/node-gettext-sprintf/issues"
+	},
+	"homepage": "https://github.com/Mindflash/node-gettext-sprintf",
+	"dependencies": {
+		"node-gettext": "^0.2.14",
+		"sprintf-js": "0.0.7",
+		"lodash": "^2.4.1"
+	},
+	"devDependencies": {
+		"tap": "^0.4.8"
+	}
+}
