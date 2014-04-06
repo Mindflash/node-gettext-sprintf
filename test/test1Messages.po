@@ -1,0 +1,25 @@
+# Spanish message file for email
+msgid ""
+msgstr ""
+"Language: test1"
+"MIME-Version: 1.0"
+"Content-Type: text/plain; charset=UTF-8"
+"Content-Transfer-Encoding: 8bit"
+"Plural-Forms: nplurals=2; plural=(n != 1);"
+
+msgid "test1 - Simple string"
+msgstr "test1 - Simple string translated"
+
+msgid "test1 - 1 string place-holder: %s"
+msgstr "test1 - 1 string place-holder: %s translated"
+
+msgid "test1 - 1 string, 1 int place-holder: %s, %d"
+msgstr "test1 - 1 string, 1 int place-holder: %s, %d translated"
+
+msgid "test1 - Simple string singular"
+msgstr[0] "test1 - Simple string translated"
+msgstr[1] "test1 - Simple string translated plural"
+
+msgid "test1 - Simple string singular int place-holder: %d"
+msgstr[0] "test1 - Simple string translated int place-holder: %d"
+msgstr[1] "test1 - Simple string translated plural int place-holder: %d"
