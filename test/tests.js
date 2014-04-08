@@ -32,13 +32,13 @@ test('sprintf place-holder strings work', function(t) {
 
 test('plural place-holder strings work', function(t) {
 	var fns = languageFns('test0');
-	t.equal(fns.getPluralText("test0 - Simple string singular", 2), "test0 - Simple string translated plural");
+	t.equal(fns.getTextPlural("test0 - Simple string singular", 2), "test0 - Simple string translated plural");
 	t.end();
 });
 
 test('sprintf plural place-holder strings work', function(t) {
 	var fns = languageFns('test0');
-	t.equal(fns.getPluralText("test0 - Simple string singular int place-holder: %d", 2, 20), "test0 - Simple string translated plural int place-holder: 20");
+	t.equal(fns.getTextPlural("test0 - Simple string singular int place-holder: %d", 2, 20), "test0 - Simple string translated plural int place-holder: 20");
 	t.end();
 });
 

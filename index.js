@@ -22,7 +22,7 @@ function getTextFromContext(language) {
 	};
 }
 
-function getPluralText(language) {
+function getTextPlural(language) {
 	return function () {
 		var msgId = arguments[0];
 		var amt = arguments[1];
@@ -32,7 +32,7 @@ function getPluralText(language) {
 	};
 }
 
-function getPluralTextFromContext(language) {
+function getTextPluralFromContext(language) {
 	return function () {
 		var msgContext = arguments[0];
 		var msgId = arguments[1];
@@ -43,10 +43,10 @@ function getPluralTextFromContext(language) {
 	};
 }
 
-// domains: {es: contents-of-es.po, fr: contents-of-fr.po}
+// domains: {es: contents-of-es.po, fr: contents-of-fr.po} etc
 function mfLanguage(domains, cb) {
 	if(_.isEmpty(domains) || !_.isObject(domains))
-		return cb(new Error('domains argument required'));
+		return setImmediate(function() { cb(new Error('domains argument required')); });
 
 	_.each(domains, function(poContent, language) {
 		gt.addTextdomain(language, poContent);
@@ -56,8 +56,8 @@ function mfLanguage(domains, cb) {
 		return {
 			getText: getText(language),
 			getTextFromContext: getTextFromContext(language),
-			getPluralText: getPluralText(language),
-			getPluralTextFromContext: getPluralTextFromContext(language)
+			getTextPlural: getTextPlural(language),
+			getTextPluralFromContext: getTextPluralFromContext(language)
 		};
 	});
 }
