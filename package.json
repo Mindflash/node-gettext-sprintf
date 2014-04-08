@@ -1,6 +1,6 @@
 {
 	"name": "node-gettext-sprintf",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"description": "A combination of node-gettext and sprintf",
 	"main": "index.js",
 	"scripts": {

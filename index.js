@@ -3,7 +3,8 @@ var vsprintf = require("sprintf-js").vsprintf;
 var Gettext = require("node-gettext");
 var gt = new Gettext();
 
-function getText(language) {
+// get text
+function dgettext(language) {
 	return function () {
 		var msgId = arguments[0];
 		var sprintfArgs = _.rest(arguments, 1);
@@ -12,7 +13,8 @@ function getText(language) {
 	};
 }
 
-function getTextFromContext(language) {
+// get text from context
+function dpgettext(language) {
 	return function () {
 		var msgContext = arguments[0];
 		var msgId = arguments[1];
@@ -22,7 +24,8 @@ function getTextFromContext(language) {
 	};
 }
 
-function getTextPlural(language) {
+// get plural text
+function dngettext(language) {
 	return function () {
 		var msgId = arguments[0];
 		var amt = arguments[1];
@@ -32,7 +35,8 @@ function getTextPlural(language) {
 	};
 }
 
-function getTextPluralFromContext(language) {
+// get plural text from context
+function dnpgettext(language) {
 	return function () {
 		var msgContext = arguments[0];
 		var msgId = arguments[1];
@@ -52,12 +56,13 @@ function mfLanguage(domains, cb) {
 		gt.addTextdomain(language, poContent);
 	});
 
+	var ret =
 	cb(null, function (language) {
 		return {
-			getText: getText(language),
-			getTextFromContext: getTextFromContext(language),
-			getTextPlural: getTextPlural(language),
-			getTextPluralFromContext: getTextPluralFromContext(language)
+			dgettext: dgettext(language),
+			dpgettext: dpgettext(language),
+			dngettext: dngettext(language),
+			dnpgettext: dnpgettext(language)
 		};
 	});
 }
