@@ -48,7 +48,7 @@ function dnpgettext(language) {
 }
 
 // domains: {es: contents-of-es.po, fr: contents-of-fr.po} etc
-function mfLanguage(domains, cb) {
+module.exports = function (domains, cb) {
 	if(_.isEmpty(domains) || !_.isObject(domains))
 		return setImmediate(function() { cb(new Error('domains argument required')); });
 
@@ -56,7 +56,6 @@ function mfLanguage(domains, cb) {
 		gt.addTextdomain(language, poContent);
 	});
 
-	var ret =
 	cb(null, function (language) {
 		return {
 			dgettext: dgettext(language),
@@ -65,5 +64,4 @@ function mfLanguage(domains, cb) {
 			dnpgettext: dnpgettext(language)
 		};
 	});
-}
-module.exports = mfLanguage;
+};
