@@ -14,24 +14,22 @@ npm install node-gettext-sprintf
 "use strict";
 var fs = require('fs');
 var getText = require('node-gettext-sprintf');
-var languageFns;
 
-getText({
+var languageFns = getText({
 	'test': fs.readFileSync('./test.po')
-}, function(err, res) {
-	languageFns = res('test'); // loads the 'test' language
-
-	languageFns.getText("Simple string");
-	// returns "Simple string translated"
-
-	languageFns.getText("1 string, 1 int place-holder: %s, %d", "test-string", 30);
-	// returns "1 string, 1 int place-holder: test-string, 30 translated"
-
-	languageFns.getTextPlural("Simple string singular", 2);
-	// returns "Simple string translated plural"
-
-	languageFns.getTextPlural("Simple string singular int place-holder: %d", 2, 20);
-	// returns "Simple string translated plural int place-holder: 20"
 });
 
+languageFns = res('test'); // loads the 'test' language
+
+languageFns.getText("Simple string");
+// returns "Simple string translated"
+
+languageFns.getText("1 string, 1 int place-holder: %s, %d", "test-string", 30);
+// returns "1 string, 1 int place-holder: test-string, 30 translated"
+
+languageFns.getTextPlural("Simple string singular", 2);
+// returns "Simple string translated plural"
+
+languageFns.getTextPlural("Simple string singular int place-holder: %d", 2, 20);
+// returns "Simple string translated plural int place-holder: 20"
 ```
