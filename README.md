@@ -15,11 +15,11 @@ npm install node-gettext-sprintf
 var fs = require('fs');
 var getText = require('node-gettext-sprintf');
 
-var languageFns = getText({
+var getText = getText({
 	'test': fs.readFileSync('./test.po')
 });
 
-languageFns = res('test'); // loads the 'test' language
+languageFns = getText('test'); // loads the 'test' language
 
 languageFns.getText("Simple string");
 // returns "Simple string translated"
