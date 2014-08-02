@@ -1,20 +1,15 @@
 var fs = require('fs');
 var path = require('path');
-var util = require('util');
 var test = require('tap').test;
 var gtSf = require('..');
 var languageFns;
 
 test('Setup', function(t) {
-	gtSf({
+	languageFns = gtSf({
 		'test0': fs.readFileSync(path.join(__dirname, 'test0Messages.po')),
 		'test1': fs.readFileSync(path.join(__dirname, 'test1Messages.po'))
-	}, function(err, res) {
-		t.notOk(err, "Did not error on initialize, received: " + util.inspect(err, {depth: null}));
-		t.ok(res, "A result was returned from initialize, received: " + util.inspect(res, {depth: null}));
-		languageFns = res;
-		t.end();
 	});
+	t.end();
 });
 
 test('Simple strings work', function(t) {

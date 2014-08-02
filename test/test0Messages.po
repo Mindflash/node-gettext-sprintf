@@ -1,4 +1,3 @@
-# Spanish message file for email
 msgid ""
 msgstr ""
 "Language: test0"

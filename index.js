@@ -3,15 +3,15 @@ var Gettext = require("node-gettext");
 var gt = new Gettext();
 
 // domains: {es: contents-of-es.po, fr: contents-of-fr.po} etc
-module.exports = function (domains, cb) {
-	if(!domains || Object.keys(domains).length === 0)
-		return setImmediate(function() { cb(new Error('domains argument required')); });
+module.exports = function (domains) {
+	if (!domains || Object.keys(domains).length === 0)
+		throw new Error('domains argument required');
 
-	Object.keys(domains).forEach(function(language) {
+	Object.keys(domains).forEach(function (language) {
 		gt.addTextdomain(language, domains[language]);
 	});
 
-	cb(null, function (language) {
+	return function (language) {
 		return {
 			// get text
 			dgettext: function () {
@@ -53,5 +53,5 @@ module.exports = function (domains, cb) {
 				return vsprintf(gt.dnpgettext(language, msgContext, msgId, null, amt), sprintfArgs);
 			}
 		};
-	});
+	};
 };
