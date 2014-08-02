@@ -1,67 +1,57 @@
-var _ = require('lodash');
 var vsprintf = require("sprintf-js").vsprintf;
 var Gettext = require("node-gettext");
 var gt = new Gettext();
 
-// get text
-function dgettext(language) {
-	return function () {
-		var msgId = arguments[0];
-		var sprintfArgs = _.rest(arguments, 1);
-
-		return vsprintf(gt.dgettext(language, msgId), sprintfArgs);
-	};
-}
-
-// get text from context
-function dpgettext(language) {
-	return function () {
-		var msgContext = arguments[0];
-		var msgId = arguments[1];
-		var sprintfArgs = _.rest(arguments, 2);
-
-		return vsprintf(gt.dpgettext(language, msgContext, msgId), sprintfArgs);
-	};
-}
-
-// get plural text
-function dngettext(language) {
-	return function () {
-		var msgId = arguments[0];
-		var amt = arguments[1];
-		var sprintfArgs = _.rest(arguments, 2);
-
-		return vsprintf(gt.dngettext(language, msgId, null, amt), sprintfArgs);
-	};
-}
-
-// get plural text from context
-function dnpgettext(language) {
-	return function () {
-		var msgContext = arguments[0];
-		var msgId = arguments[1];
-		var amt = arguments[2];
-		var sprintfArgs = _.rest(arguments, 3);
-
-		return vsprintf(gt.dnpgettext(language, msgContext, msgId, null, amt), sprintfArgs);
-	};
-}
-
 // domains: {es: contents-of-es.po, fr: contents-of-fr.po} etc
 module.exports = function (domains, cb) {
-	if(_.isEmpty(domains) || !_.isObject(domains))
+	if(!domains || Object.keys(domains).length === 0)
 		return setImmediate(function() { cb(new Error('domains argument required')); });
 
-	_.each(domains, function(poContent, language) {
-		gt.addTextdomain(language, poContent);
+	Object.keys(domains).forEach(function(language) {
+		gt.addTextdomain(language, domains[language]);
 	});
 
 	cb(null, function (language) {
 		return {
-			dgettext: dgettext(language),
-			dpgettext: dpgettext(language),
-			dngettext: dngettext(language),
-			dnpgettext: dnpgettext(language)
+			// get text
+			dgettext: function () {
+				var args = Array.prototype.slice.call(arguments);
+				var msgId = args[0];
+				var sprintfArgs = args.slice(1);
+
+				return vsprintf(gt.dgettext(language, msgId), sprintfArgs);
+			},
+
+			// get text from context
+			dpgettext: function () {
+				var args = Array.prototype.slice.call(arguments);
+				var msgContext = args[0];
+				var msgId = args[1];
+				var sprintfArgs = args.slice(2);
+
+				return vsprintf(gt.dpgettext(language, msgContext, msgId), sprintfArgs);
+			},
+
+			// get plural text
+			dngettext: function () {
+				var args = Array.prototype.slice.call(arguments);
+				var msgId = args[0];
+				var amt = args[1];
+				var sprintfArgs = args.slice(2);
+
+				return vsprintf(gt.dngettext(language, msgId, null, amt), sprintfArgs);
+			},
+
+			// get plural text from context
+			dnpgettext: function () {
+				var args = Array.prototype.slice.call(arguments);
+				var msgContext = args[0];
+				var msgId = args[1];
+				var amt = args[2];
+				var sprintfArgs = args.slice(3);
+
+				return vsprintf(gt.dnpgettext(language, msgContext, msgId, null, amt), sprintfArgs);
+			}
 		};
 	});
 };

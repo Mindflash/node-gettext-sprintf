@@ -2,11 +2,11 @@ var fs = require('fs');
 var path = require('path');
 var util = require('util');
 var test = require('tap').test;
-var mfLanguage = require('..');
+var gtSf = require('..');
 var languageFns;
 
 test('Setup', function(t) {
-	mfLanguage({
+	gtSf({
 		'test0': fs.readFileSync(path.join(__dirname, 'test0Messages.po')),
 		'test1': fs.readFileSync(path.join(__dirname, 'test1Messages.po'))
 	}, function(err, res) {
