@@ -61,7 +61,12 @@ function GetTextFunctions(language) {
 		dgettext: dgettext,
 		dpgettext: dpgettext,
 		dngettext: dngettext,
-		dnpgettext: dnpgettext
+		dnpgettext: dnpgettext,
+		// Sugar, since not everyone has read the gettext manual :)
+		getSingularText: dgettext,
+		getSingularTextInContext: dpgettext,
+		getSingularOrPluralText: dngettext,
+		getSingularOrPluralTextInContext: dnpgettext
 	};
 }
 
