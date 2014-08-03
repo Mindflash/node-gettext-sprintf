@@ -68,13 +68,18 @@ function GetTextFunctions(language) {
 // domains: {es: contents-of-es.po, fr: contents-of-fr.po} etc
 module.exports = function (domains) {
 	if (!domains || Object.keys(domains).length === 0)
-		throw new Error('domains argument required');
+		throw new Error('domains argument required.');
 
+	var cache = {};
 	Object.keys(domains).forEach(function (language) {
 		gt.addTextdomain(language, domains[language]);
+		cache[language] = new GetTextFunctions(language);
 	});
 
 	return function (language) {
-		return new GetTextFunctions(language);
+		if(!cache[language])
+			throw new Error('specified language: "'+language+'" not found.');
+
+		return cache[language];
 	};
 };

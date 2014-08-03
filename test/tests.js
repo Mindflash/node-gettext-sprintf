@@ -38,9 +38,13 @@ test('sprintf plural place-holder strings work', function(t) {
 });
 
 test('switching language works', function(t) {
-	var fns0 = languageFns('test0');
-	t.equal(fns0.dgettext("test0 - Simple string"), "test0 - Simple string translated");
-	var fns1 = languageFns('test1');
-	t.equal(fns1.dgettext("test1 - Simple string"), "test1 - Simple string translated");
+	var fns = languageFns('test0');
+	t.equal(fns.dgettext("test0 - Simple string"), "test0 - Simple string translated");
+
+	fns = languageFns('test1');
+	t.equal(fns.dgettext("test1 - Simple string"), "test1 - Simple string translated");
+
+	fns = languageFns('test0');
+	t.equal(fns.dgettext("test0 - Simple string"), "test0 - Simple string translated");
 	t.end();
 });
