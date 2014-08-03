@@ -9,11 +9,11 @@ function GetTextFunctions(language) {
 	function dgettext() {
 		var args = __slice.call(arguments);
 		var msgId = args[0];
-		var sprintfArgs = __slice.call(args, 1);
 
-		if(sprintfArgs.length === 0)
+		if(args.length === 1)
 			return gt.dgettext(language, msgId);
 
+		var sprintfArgs = __slice.call(args, 1);
 		return vsprintf(gt.dgettext(language, msgId), sprintfArgs);
 	}
 
@@ -22,11 +22,11 @@ function GetTextFunctions(language) {
 		var args = __slice.call(arguments);
 		var msgContext = args[0];
 		var msgId = args[1];
-		var sprintfArgs = __slice.call(args, 2);
 
-		if(sprintfArgs.length === 0)
+		if(args.length === 2)
 			return gt.dpgettext(language, msgContext, msgId);
 
+		var sprintfArgs = __slice.call(args, 2);
 		return vsprintf(gt.dpgettext(language, msgContext, msgId), sprintfArgs);
 	}
 
@@ -35,11 +35,11 @@ function GetTextFunctions(language) {
 		var args = __slice.call(arguments);
 		var msgId = args[0];
 		var amt = args[1];
-		var sprintfArgs = __slice.call(args, 2);
 
-		if(sprintfArgs.length === 0)
+		if(args.length === 2)
 			return gt.dngettext(language, msgId, null, amt);
 
+		var sprintfArgs = __slice.call(args, 2);
 		return vsprintf(gt.dngettext(language, msgId, null, amt), sprintfArgs);
 	}
 
@@ -49,11 +49,11 @@ function GetTextFunctions(language) {
 		var msgContext = args[0];
 		var msgId = args[1];
 		var amt = args[2];
-		var sprintfArgs = __slice.call(args, 3);
 
-		if(sprintfArgs.length === 0)
+		if(args.length === 3)
 			return gt.dnpgettext(language, msgContext, msgId, null, amt);
 
+		var sprintfArgs = __slice.call(args, 3);
 		return vsprintf(gt.dnpgettext(language, msgContext, msgId, null, amt), sprintfArgs);
 	}
 
