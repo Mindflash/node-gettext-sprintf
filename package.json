@@ -1,6 +1,6 @@
 {
 	"name": "node-gettext-sprintf",
-	"version": "0.0.8",
+	"version": "0.0.9",
 	"description": "A combination of node-gettext and sprintf",
 	"main": "index.js",
 	"scripts": {
@@ -17,8 +17,8 @@
 	},
 	"homepage": "https://github.com/Mindflash/node-gettext-sprintf",
 	"dependencies": {
-		"node-gettext": "^0.2.14",
-		"sprintf-js": "0.0.7"
+		"extsprintf": "^1.2.0",
+		"node-gettext": "^0.2.14"
 	},
 	"devDependencies": {
 		"tap": "^0.4.8"

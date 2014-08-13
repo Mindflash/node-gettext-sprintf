@@ -1,4 +1,4 @@
-var vsprintf = require("sprintf-js").vsprintf;
+var extsprintf = require('extsprintf');
 var Gettext = require("node-gettext");
 var gt = new Gettext();
 var __slice = Array.prototype.slice;
@@ -10,11 +10,11 @@ function GetTextFunctions(language) {
 		var args = __slice.call(arguments);
 		var msgId = args[0];
 
-		if(args.length === 1)
-			return gt.dgettext(language, msgId);
+		var text = gt.dgettext(language, msgId);
+		if (args.length === 1) return text;
 
-		var sprintfArgs = __slice.call(args, 1);
-		return vsprintf(gt.dgettext(language, msgId), sprintfArgs);
+		var sprintfArgs = [ text ].concat(__slice.call(args, 1));
+		return extsprintf.sprintf.apply(this, sprintfArgs);
 	}
 
 	// get text from context
@@ -23,11 +23,11 @@ function GetTextFunctions(language) {
 		var msgContext = args[0];
 		var msgId = args[1];
 
-		if(args.length === 2)
-			return gt.dpgettext(language, msgContext, msgId);
+		var text = gt.dpgettext(language, msgContext, msgId);
+		if (args.length === 2) return text;
 
-		var sprintfArgs = __slice.call(args, 2);
-		return vsprintf(gt.dpgettext(language, msgContext, msgId), sprintfArgs);
+		var sprintfArgs = [ text ].concat(__slice.call(args, 2));
+		return extsprintf.sprintf.apply(this, sprintfArgs);
 	}
 
 	// get plural text
@@ -36,11 +36,11 @@ function GetTextFunctions(language) {
 		var msgId = args[0];
 		var amt = args[1];
 
-		if(args.length === 2)
-			return gt.dngettext(language, msgId, null, amt);
+		var text = gt.dngettext(language, msgId, null, amt);
+		if (args.length === 2) return text;
 
-		var sprintfArgs = __slice.call(args, 2);
-		return vsprintf(gt.dngettext(language, msgId, null, amt), sprintfArgs);
+		var sprintfArgs = [ text ].concat(__slice.call(args, 2));
+		return extsprintf.sprintf.apply(this, sprintfArgs);
 	}
 
 	// get plural text from context
@@ -50,11 +50,11 @@ function GetTextFunctions(language) {
 		var msgId = args[1];
 		var amt = args[2];
 
-		if(args.length === 3)
-			return gt.dnpgettext(language, msgContext, msgId, null, amt);
+		var text = gt.dnpgettext(language, msgContext, msgId, null, amt);
+		if (args.length === 3) return text;
 
-		var sprintfArgs = __slice.call(args, 3);
-		return vsprintf(gt.dnpgettext(language, msgContext, msgId, null, amt), sprintfArgs);
+		var sprintfArgs = [ text ].concat(__slice.call(args, 3));
+		return extsprintf.sprintf.apply(this, sprintfArgs);
 	}
 
 	return {
@@ -82,8 +82,8 @@ module.exports = function (domains) {
 	});
 
 	return function (language) {
-		if(!cache[language])
-			throw new Error('specified language: "'+language+'" not found.');
+		if (!cache[language])
+			throw new Error('specified language: "' + language + '" not found.');
 
 		return cache[language];
 	};
